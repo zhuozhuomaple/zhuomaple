@@ -98,14 +98,20 @@ curl "http://127.0.0.1:8000/tasks?start_date=2026-01-01&end_date=2026-12-31"
 
 ## 测试结果
 
-运行 `py -m pytest -v` 后，将终端截图保存为 `docs/pytest-result.png`：
+运行 `py -m pytest -v` 后，将终端截图保存为 `docs/pytest_result.png`：
 
 ```powershell
 cd D:\task-api
 py -m pytest -v
 ```
 
-![pytest 测试通过](docs/pytest-result.png)
+![pytest 测试通过](docs/pytest_result.png)
+
+## ai使用
+
+![aiuse](docs/aihelp1.png)
+
+![aiuse](docs/aihelp2.png)
 
 ## 项目结构
 
@@ -123,4 +129,4 @@ task-api/
 
 ## 作者
 
-校招 AI Coding 培训 — 软件开发工程师
+曾令卓
