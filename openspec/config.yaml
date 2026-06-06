@@ -1,0 +1,7 @@
+schema: spec-driven
+
+context: |
+  RESTful 任务管理 API
+  技术栈: Python 3.9+, FastAPI, SQLAlchemy, SQLite, pytest
+  提交规范: Conventional Commits (feat/fix/test/docs)
+  SDD 文档目录: openspec/changes/task-management-api/
