@@ -15,7 +15,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="Task Management API",
-    description="校招 AI Coding 培训课题 SD-01：RESTful 任务管理 API",
+    description="RESTful 任务管理 API",
     version="1.0.0",
     lifespan=lifespan,
 )
