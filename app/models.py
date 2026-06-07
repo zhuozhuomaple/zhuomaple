@@ -1,6 +1,6 @@
-from datetime import datetime
+from datetime import date
 
-from sqlalchemy import DateTime, Integer, String
+from sqlalchemy import Date, Integer, String
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.database import Base
@@ -13,4 +13,4 @@ class Task(Base):
     title: Mapped[str] = mapped_column(String(200), nullable=False)
     status: Mapped[str] = mapped_column(String(20), nullable=False, default="pending")
     priority: Mapped[str] = mapped_column(String(20), nullable=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    created_at: Mapped[date] = mapped_column(Date, default=date.today)

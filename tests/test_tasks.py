@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date
 
 from tests.conftest import add_task
 
@@ -232,12 +232,12 @@ def test_list_tasks_filter_by_start_date(client, db_session):
     add_task(
         db_session,
         title="January task",
-        created_at=datetime(2026, 1, 1, 10, 0, 0),
+        created_at=date(2026, 1, 1),
     )
     add_task(
         db_session,
         title="June task",
-        created_at=datetime(2026, 6, 1, 10, 0, 0),
+        created_at=date(2026, 6, 1),
     )
 
     response = client.get("/tasks", params={"start_date": "2026-05-01"})
@@ -251,12 +251,12 @@ def test_list_tasks_filter_by_end_date(client, db_session):
     add_task(
         db_session,
         title="January task",
-        created_at=datetime(2026, 1, 1, 10, 0, 0),
+        created_at=date(2026, 1, 1),
     )
     add_task(
         db_session,
         title="June task",
-        created_at=datetime(2026, 6, 1, 10, 0, 0),
+        created_at=date(2026, 6, 1),
     )
 
     response = client.get("/tasks", params={"end_date": "2026-03-31"})
@@ -270,17 +270,17 @@ def test_list_tasks_filter_by_date_range(client, db_session):
     add_task(
         db_session,
         title="January task",
-        created_at=datetime(2026, 1, 1, 10, 0, 0),
+        created_at=date(2026, 1, 1),
     )
     add_task(
         db_session,
         title="June task",
-        created_at=datetime(2026, 6, 1, 10, 0, 0),
+        created_at=date(2026, 6, 1),
     )
     add_task(
         db_session,
         title="December task",
-        created_at=datetime(2026, 12, 1, 10, 0, 0),
+        created_at=date(2026, 12, 1),
     )
 
     response = client.get(
@@ -298,7 +298,7 @@ def test_list_tasks_filter_date_range_empty(client, db_session):
     add_task(
         db_session,
         title="June task",
-        created_at=datetime(2026, 6, 1, 10, 0, 0),
+        created_at=date(2026, 6, 1),
     )
 
     response = client.get(
@@ -338,14 +338,14 @@ def test_list_tasks_filter_by_status_and_start_date(client, db_session):
         title="Pending June",
         status="pending",
         priority="high",
-        created_at=datetime(2026, 6, 1, 10, 0, 0),
+        created_at=date(2026, 6, 1),
     )
     add_task(
         db_session,
         title="Pending January",
         status="pending",
         priority="high",
-        created_at=datetime(2026, 1, 1, 10, 0, 0),
+        created_at=date(2026, 1, 1),
     )
 
     response = client.get(
@@ -364,14 +364,14 @@ def test_list_tasks_filter_by_priority_and_end_date(client, db_session):
         title="High June",
         status="pending",
         priority="high",
-        created_at=datetime(2026, 6, 1, 10, 0, 0),
+        created_at=date(2026, 6, 1),
     )
     add_task(
         db_session,
         title="High January",
         status="pending",
         priority="high",
-        created_at=datetime(2026, 1, 1, 10, 0, 0),
+        created_at=date(2026, 1, 1),
     )
 
     response = client.get(
@@ -390,21 +390,21 @@ def test_list_tasks_filter_combined_all(client, db_session):
         title="Match",
         status="pending",
         priority="high",
-        created_at=datetime(2026, 6, 1, 10, 0, 0),
+        created_at=date(2026, 6, 1),
     )
     add_task(
         db_session,
         title="Wrong date",
         status="pending",
         priority="high",
-        created_at=datetime(2026, 1, 1, 10, 0, 0),
+        created_at=date(2026, 1, 1),
     )
     add_task(
         db_session,
         title="Wrong priority",
         status="pending",
         priority="low",
-        created_at=datetime(2026, 6, 1, 10, 0, 0),
+        created_at=date(2026, 6, 1),
     )
 
     response = client.get(
@@ -472,12 +472,12 @@ def test_list_tasks_sort_desc_default(client, db_session):
     add_task(
         db_session,
         title="Older",
-        created_at=datetime(2026, 1, 1, 10, 0, 0),
+        created_at=date(2026, 1, 1),
     )
     add_task(
         db_session,
         title="Newer",
-        created_at=datetime(2026, 6, 1, 10, 0, 0),
+        created_at=date(2026, 6, 1),
     )
 
     response = client.get("/tasks")
@@ -491,12 +491,12 @@ def test_list_tasks_sort_asc(client, db_session):
     add_task(
         db_session,
         title="Older",
-        created_at=datetime(2026, 1, 1, 10, 0, 0),
+        created_at=date(2026, 1, 1),
     )
     add_task(
         db_session,
         title="Newer",
-        created_at=datetime(2026, 6, 1, 10, 0, 0),
+        created_at=date(2026, 6, 1),
     )
 
     response = client.get("/tasks?sort=asc")

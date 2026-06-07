@@ -27,11 +27,17 @@ def init_db():
 
     from app import models  # noqa: F401
 
-    expected_columns = {col.name for col in models.Task.__table__.columns}
     inspector = inspect(engine)
     if inspector.has_table("tasks"):
-        actual_columns = {col["name"] for col in inspector.get_columns("tasks")}
-        if actual_columns != expected_columns:
+        expected = {
+            col.name: str(col.type.compile(dialect=engine.dialect))
+            for col in models.Task.__table__.columns
+        }
+        actual = {
+            col["name"]: str(col["type"])
+            for col in inspector.get_columns("tasks")
+        }
+        if expected != actual:
             Base.metadata.drop_all(bind=engine)
 
     Base.metadata.create_all(bind=engine)

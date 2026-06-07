@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date
 
 import pytest
 from fastapi.testclient import TestClient
@@ -70,7 +70,7 @@ def add_task(
     title: str,
     status: str = "pending",
     priority: str = "medium",
-    created_at: datetime,
+    created_at: date,
 ) -> Task:
     task = Task(
         title=title,

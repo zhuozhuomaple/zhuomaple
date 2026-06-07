@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date
 from enum import Enum
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -35,7 +35,7 @@ class TaskResponse(BaseModel):
     title: str
     status: TaskStatus
     priority: TaskPriority
-    created_at: datetime
+    created_at: date
 
 
 class TaskListResponse(BaseModel):

@@ -32,9 +32,9 @@ def _apply_list_filters(
     if priority is not None:
         query = query.where(Task.priority == priority.value)
     if start_date is not None:
-        query = query.where(func.date(Task.created_at) >= start_date)
+        query = query.where(Task.created_at >= start_date)
     if end_date is not None:
-        query = query.where(func.date(Task.created_at) <= end_date)
+        query = query.where(Task.created_at <= end_date)
     return query
 
 
