@@ -109,6 +109,8 @@ py -m pytest -v
 
 ## ai使用
 
+![aiuse](docs/aihelp.png)
+
 ![aiuse](docs/aihelp1.png)
 
 ![aiuse](docs/aihelp2.png)
