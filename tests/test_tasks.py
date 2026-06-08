@@ -504,3 +504,28 @@ def test_list_tasks_sort_asc(client, db_session):
     items = response.json()["items"]
     assert items[0]["title"] == "Older"
     assert items[1]["title"] == "Newer"
+
+
+def test_list_tasks_sort_same_date_by_id_asc(client, db_session):
+    task_a = add_task(
+        db_session,
+        title="Task A",
+        created_at=date(2026, 6, 7),
+    )
+    task_b = add_task(
+        db_session,
+        title="Task B",
+        created_at=date(2026, 6, 7),
+    )
+    task_c = add_task(
+        db_session,
+        title="Task C",
+        created_at=date(2026, 6, 7),
+    )
+    expected_ids = [task_a.id, task_b.id, task_c.id]
+
+    for sort in ("desc", "asc"):
+        response = client.get("/tasks", params={"sort": sort})
+        assert response.status_code == 200
+        ids = [item["id"] for item in response.json()["items"]]
+        assert ids == expected_ids

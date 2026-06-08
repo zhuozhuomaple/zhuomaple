@@ -81,8 +81,11 @@ def list_tasks(
 
     total = db.scalar(count_query) or 0
 
-    order = Task.created_at.asc() if sort == "asc" else Task.created_at.desc()
-    query = query.order_by(order).offset((page - 1) * page_size).limit(page_size)
+    if sort == "asc":
+        query = query.order_by(Task.created_at.asc(), Task.id.asc())
+    else:
+        query = query.order_by(Task.created_at.desc(), Task.id.asc())
+    query = query.offset((page - 1) * page_size).limit(page_size)
 
     items = db.scalars(query).all()
     return TaskListResponse(items=items, total=total, page=page, page_size=page_size)

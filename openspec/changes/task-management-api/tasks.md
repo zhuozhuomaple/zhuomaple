@@ -23,7 +23,7 @@
 - [x] 3.3 实现按 priority 过滤
 - [x] 3.4 实现按创建日期过滤：查询参数 `start_date` / `end_date`（YYYY-MM-DD），支持单边界与闭区间；无匹配时返回空列表
 - [x] 3.5 实现 `_apply_list_filters()`：status、priority、start_date、end_date 以 AND 组合（对照「多条件组合过滤」全部 Scenario）
-- [x] 3.6 实现按 created_at 排序：默认 desc（新→旧），`sort=asc` 为旧→新；组合过滤与分页、排序可同时生效
+- [x] 3.6 实现按 created_at 排序：默认 desc（新→旧），`sort=asc` 为旧→新；created_at 相同时按 id 升序；组合过滤与分页、排序可同时生效
 
 ## 4. 测试与验收
 

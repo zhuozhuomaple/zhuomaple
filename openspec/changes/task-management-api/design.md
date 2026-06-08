@@ -133,7 +133,7 @@
 | end_date | date | 结束日期（含），格式 `YYYY-MM-DD`，如 `2026-12-31` |
 | page | int | 页码，默认 1，非法值（如 0）→ 422 |
 | page_size | int | 每页条数，默认 20，上限 100 |
-| sort | asc / desc | 按 created_at 排序，默认 desc |
+| sort | asc / desc | 按 created_at 排序，默认 desc；created_at 相同时按 id 升序 |
 
 **时间范围说明**：`start_date` 与 `end_date` 表示从某年某月某日起到某年某月某日止（按任务的 `created_at` 判断）。可只传其一，也可同时传入表示闭区间；例如 `start_date=2026-01-01&end_date=2026-06-30` 表示 2026 年 1 月 1 日至 6 月 30 日之间创建的任务。
 

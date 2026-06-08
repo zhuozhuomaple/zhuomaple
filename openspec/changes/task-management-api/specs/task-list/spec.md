@@ -132,7 +132,7 @@ The system SHALL 支持同时使用多个查询条件过滤任务列表，条件
 - AND items 按 created_at 从旧到新排列
 
 ### Requirement: 列表排序
-The system SHALL 支持按 created_at 排序
+The system SHALL 支持按 created_at 排序；当 created_at 相同时，按 id 从小到大作为第二排序键
 
 #### Scenario: 按创建时间降序（默认）
 - GIVEN 数据库中存在多条不同 created_at 的任务
@@ -145,3 +145,9 @@ The system SHALL 支持按 created_at 排序
 - WHEN 客户端 GET /tasks?sort=asc
 - THEN 返回 HTTP 200
 - AND items 按 created_at 从旧到新排列
+
+#### Scenario: 创建日期相同时按 id 升序
+- GIVEN 数据库中存在多条 created_at 均为 2026-06-07 的任务（id 分别为 1、2、3）
+- WHEN 客户端 GET /tasks（或 `sort=asc` / `sort=desc`）
+- THEN 返回 HTTP 200
+- AND items 在 created_at 相同的前提下按 id 从小到大排列
