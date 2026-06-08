@@ -75,6 +75,11 @@ The system SHALL 支持按 created_at 的日期范围过滤任务列表（从某
 - THEN 返回 HTTP 200
 - AND items 中每条任务的 created_at 日期均在 2026-01-01 至 2026-06-30 之间（含首尾）
 
+#### Scenario: 起始日期晚于结束日期
+- GIVEN 任意数据库状态
+- WHEN 客户端 GET /tasks?start_date=2026-06-07&end_date=2026-06-02
+- THEN 返回 HTTP 422
+
 #### Scenario: 日期范围内无匹配
 - GIVEN 所有任务创建于 2026-06-01
 - WHEN 客户端 GET /tasks?start_date=2026-12-01&end_date=2026-12-31

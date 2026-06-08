@@ -69,6 +69,12 @@ def list_tasks(
     sort: str = Query("desc", pattern="^(asc|desc)$"),
     db: Session = Depends(get_db),
 ):
+    if start_date is not None and end_date is not None and start_date > end_date:
+        raise HTTPException(
+            status_code=422,
+            detail="start_date must not be after end_date",
+        )
+
     filters = {
         "status": status,
         "priority": priority,

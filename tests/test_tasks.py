@@ -168,6 +168,15 @@ def test_list_tasks_invalid_page(client):
     assert response.status_code == 422
 
 
+def test_list_tasks_invalid_date_range(client):
+    response = client.get(
+        "/tasks",
+        params={"start_date": "2026-06-07", "end_date": "2026-06-02"},
+    )
+    assert response.status_code == 422
+    assert response.json()["detail"] == "start_date must not be after end_date"
+
+
 def test_list_tasks_filter_by_status(client):
     client.post(
         "/tasks",
